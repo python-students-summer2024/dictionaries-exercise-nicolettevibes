@@ -18,23 +18,17 @@ def bake_cookies(filepath):
     # write your code for this function below here.
     cookies = []
     file = open(filepath, mode='r')
-    try:
-        csv_reader = csv.DictReader(file)
-        for row in csv_reader:
-            print(row)
-            cookie = {
-                'id': int(row['id']),
-                'title': row['title'],
-                'description': row['description'],
-                'price': float(row['price'].replace('$', ''))
-            }
-            cookies.append(cookie)
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        file.close()
+    csv_reader = csv.DictReader(file)
+    for row in csv_reader:
+        cookie = {
+            'id': int(row['id']),
+            'title': row['title'],
+            'description': row['description'],
+            'price': float(row['price'].replace('$', ''))
+        }
+        cookies.append(cookie)
+    file.close()
     
-    print(cookies)
     return cookies
 
 def welcome():
