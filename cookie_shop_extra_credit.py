@@ -32,28 +32,26 @@ def welcome_message():
     print("We feed each according to their need.\n")
     print("We'd hate to trigger an allergic reaction in your body. So please answer the following questions:")
 
-    while True:
-        nuts_allergy = input("Are you allergic to nuts? (yes/no): ").strip().lower()
-        if nuts_allergy in ['yes', 'y', 'no', 'n']:
-            break
-        else:
-            print("Please answer with 'yes', 'y', 'no', or 'n'.")
+    valid_responses = ['yes', 'y', 'no', 'n']
 
-    while True:
-        gluten_allergy = input("Are you allergic to gluten? (yes/no): ").strip().lower()
-        if gluten_allergy in ['yes', 'y', 'no', 'n']:
-            break
-        else:
-            print("Please answer with 'yes', 'y', 'no', or 'n'.")
+    nuts_allergy = input("Are you allergic to nuts? (yes/no): ").strip().lower()
+    if nuts_allergy not in valid_responses:
+        print("Invalid response. Defaulting to 'no'.")
+        nuts_allergy = 'no'
 
-    while True:
-        diabetes = input("Do you suffer from diabetes? (yes/no): ").strip().lower()
-        if diabetes in ['yes', 'y', 'no', 'n']:
-            break
-        else:
-            print("Please answer with 'yes', 'y', 'no', or 'n'.")
+    gluten_allergy = input("Are you allergic to gluten? (yes/no): ").strip().lower()
+    if gluten_allergy not in valid_responses:
+        print("Invalid response. Defaulting to 'no'.")
+        gluten_allergy = 'no'
 
-    return nuts_allergy, gluten_allergy, diabetes
+    diabetes = input("Do you suffer from diabetes? (yes/no): ").strip().lower()
+    if diabetes not in valid_responses:
+        print("Invalid response. Defaulting to 'no'.")
+        diabetes = 'no'
+
+    return nuts_allergy
+    return gluten_allergy
+    return diabetes
 
 
 def filter_cookies(cookies, nuts_allergy, gluten_allergy, diabetes):
